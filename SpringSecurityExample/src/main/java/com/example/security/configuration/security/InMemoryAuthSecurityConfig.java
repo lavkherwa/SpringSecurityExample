@@ -1,4 +1,4 @@
-package com.example.security.configuration;
+package com.example.security.configuration.security;
 
 import javax.sql.DataSource;
 
@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@EnableWebSecurity
-public class securityConfig extends WebSecurityConfigurerAdapter {
+//@EnableWebSecurity
+public class InMemoryAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	DataSource dataSource;
@@ -51,8 +50,9 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
 
 		http.csrf().disable();
 
-		http.authorizeRequests()//
-				.antMatchers("/manager").hasRole("manager")//
+		http.//
+				authorizeRequests()//
+				.antMatchers("/manager").access("hasRole('manager')")//
 				.antMatchers("/user").access("hasRole('manager') AND hasRole('user')")//
 				.antMatchers("/").permitAll()//
 				.and()//
