@@ -1,4 +1,4 @@
-package com.example.security.configuration.security;
+package com.example.security.configuration;
 
 import javax.sql.DataSource;
 
@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@EnableWebSecurity
+//@EnableWebSecurity
 public class JdbcAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	/*- This will provide the spring auto configured dataSource
